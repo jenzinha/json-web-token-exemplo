@@ -1,7 +1,9 @@
 body {
   font-family: 'Inter', sans-serif;
   color: #023047;
-  background-image: url(https://images2.alphacoders.com/577/577251.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(https://wallpapers.com/images/featured/4k-space-9w27dqmc4nrs3xwd.jpg);
 }
 .page {
   display: flex;
@@ -55,7 +57,7 @@ body {
 
 
 .formLogin input:focus {
-  border: 1px solid #f72585;
+  border: 1px solid #370775;
 }
 
 .formLogin label {
@@ -72,11 +74,11 @@ body {
 }
 
 .formLogin a:hover {
-  color: #f72585;
+  color: #39078a;
 }
 
 .btn {
-  background-color: #f72585;
+  background-color: #36088b;
   color: #fff;
   font-size: 14px;
   font-weight: 600;
