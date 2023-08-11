@@ -54,7 +54,11 @@ app.post('/logar', (req, res) => {
 })
 
 app.post('/deslogar', function(req, res) {
-  
+  res.cookie('token', null, { httpOnly: true })
+  res.json({
+    deslogado: true
+  })
+  res.render('autenticar')
 })
 
 app.listen(3000, function() {
