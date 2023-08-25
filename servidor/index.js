@@ -59,16 +59,25 @@ app.post('/deslogar', function(req, res) {
   res.render('autenticar')
 })
 
-app.get('/usuarios/cadastro', async function(req, res){
+app.get('/usuarios/cadastrar', async function(req, res){
   res.render('cadastro');
 })
 
 app.post('/usuarios/cadastrar', async function(req, res){
-  if(req.body.senha === req.body.confirmarsenha){
+  try{
+    if(req.body.senha == req.body.confirmarsenha){
+      await usuario.create(req.body);
+      res.redirect('/usuarios/listar')
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'senhas diferente' });
+}
+  
+})
 
-  }else{
-    res.status(500).json({ mensagem: "senhas diferentes" })
-  }
+app.get('usuarios/listar',async function(req, res){
+  res.render('home');
 })
 
 app.listen(3000, function() {
