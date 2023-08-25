@@ -37,16 +37,14 @@ app.get('/', async function(req, res){
 })
 
 app.post('/logar', (req, res) => {
-  let usuario = req.body.usuario
-  let senha = req.body.senha
-  if(usuario === "picolo@teste" && senha === "123" || usuario === "felipe@teste" && senha === "123" ){
+  if(req.body.usuario === "picolo@teste" && req.body.senha === "123" || req.body.usuario === "felipe@teste" && req.body.senha === "123" ){
     const id = '1'
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 300
     })
     res.cookie('token', token, { httpOnly: true })
     return res.json({
-      usuario: usuario,
+      usuario: req.body.usuario,
       token: token
     })
   }
@@ -61,8 +59,15 @@ app.post('/deslogar', function(req, res) {
   res.render('autenticar')
 })
 
-app.get('/usuarios/cadastrar', async function(req, res){
+app.get('/usuarios/cadastro', async function(req, res){
   res.render('cadastro');
+})
+
+app.post('/usuarios/cadastrar', async function(req, res){
+  if(req.body.senha === req.body.confirmarsenha){
+    
+  }
+  res.status(500).json({ mensagem: "senhas diferentes" })
 })
 
 app.listen(3000, function() {

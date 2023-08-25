@@ -9,15 +9,19 @@
 </head>
 <body>
   <div class="page">
-        <form method="get" class="formLogin" action="/autenticar">
+        <form method="post" class="formLogin" action="/usuarios/cadastrar">
             <h1>Cadastra-se</h1>
             <p>Digite os seus dados de acesso no campo abaixo.</p>
-            <label for="text">E-mail</label>
+
+            <label for="text">usuario</label>
             <input type="text" placeholder="Digite seu nome" autofocus="true" name="nome" id=""/>
-            <label for="email">E-mail</label>
-            <input type="email" placeholder="Digite seu e-mail" autofocus="true" name="usuario" id=""/>
+            
             <label for="password">Senha</label>
             <input  type="password" placeholder="Digite sua senha" name="senha" id=""/>
+
+            <label for="password">Confimar senha</label>
+            <input  type="password" placeholder="Digite sua senha" name="confirmarsenha" id=""/>
+
             <input type="submit" value="Cadastrar" class="btn" />
         </form>
     </div>
