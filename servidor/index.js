@@ -28,12 +28,23 @@ app.use(
   }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuarios/cadastrar"] })
 );
 
+
+
+
 app.get('/autenticar', async function(req, res){
   res.render('autenticar');
 })
 
 app.get('/', async function(req, res){
   res.render("home")
+})
+
+app.get('/usuarios/listar',async function(req, res){
+  res.render('listauser');
+})
+
+app.get('/usuarios/cadastrar', async function(req, res){
+  res.render('cadastro');
 })
 
 app.post('/logar', (req, res) => {
@@ -59,25 +70,15 @@ app.post('/deslogar', function(req, res) {
   res.render('autenticar')
 })
 
-app.get('/usuarios/cadastrar', async function(req, res){
-  res.render('cadastro');
-})
-
 app.post('/usuarios/cadastrar', async function(req, res){
-  try{
-    if(req.body.senha == req.body.confirmarsenha){
-      await usuario.create(req.body);
-      res.redirect('/usuarios/listar')
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'senhas diferente' });
-}
-  
-})
 
-app.get('usuarios/listar',async function(req, res){
-  res.render('home');
+  if(req.body.senha === req.body.senhacf){
+    console.log('usuario cadastrado com sucesso')
+    await usuario.create(req.body);
+  }else{
+    console.log('usuario não cadastrado tente novamente')
+  }
+  
 })
 
 app.listen(3000, function() {
